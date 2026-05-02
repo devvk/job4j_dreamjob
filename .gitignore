@@ -25,5 +25,6 @@ build/
 .DS_Store
 
 .idea
+*.iml
 
 target
