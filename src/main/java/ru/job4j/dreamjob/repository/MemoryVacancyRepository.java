@@ -2,8 +2,11 @@ package ru.job4j.dreamjob.repository;
 
 import ru.job4j.dreamjob.model.Vacancy;
 
-import java.time.LocalDate;
-import java.util.*;
+import java.time.LocalDateTime;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
 
 public class MemoryVacancyRepository implements VacancyRepository {
 
@@ -29,7 +32,7 @@ public class MemoryVacancyRepository implements VacancyRepository {
     @Override
     public Vacancy save(Vacancy vacancy) {
         vacancy.setId(nextId++);
-        vacancy.setCreationDate(LocalDate.now());
+        vacancy.setCreationDate(LocalDateTime.now());
         vacancies.put(vacancy.getId(), vacancy);
         return vacancy;
     }

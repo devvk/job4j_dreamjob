@@ -1,6 +1,6 @@
 package ru.job4j.dreamjob.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Vacancy {
@@ -11,7 +11,7 @@ public class Vacancy {
 
     private String description;
 
-    private LocalDate creationDate;
+    private LocalDateTime creationDate;
 
     public String getDescription() {
         return description;
@@ -21,11 +21,11 @@ public class Vacancy {
         this.description = description;
     }
 
-    public LocalDate getCreationDate() {
+    public LocalDateTime getCreationDate() {
         return creationDate;
     }
 
-    public void setCreationDate(LocalDate creationDate) {
+    public void setCreationDate(LocalDateTime creationDate) {
         this.creationDate = creationDate;
     }
 
