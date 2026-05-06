@@ -57,8 +57,8 @@ public class Candidate {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Candidate vacancy = (Candidate) o;
-        return id == vacancy.id;
+        Candidate candidate = (Candidate) o;
+        return id == candidate.id;
     }
 
     @Override
