@@ -29,9 +29,11 @@ public class Vacancy {
         this.creationDate = creationDate;
     }
 
-    public Vacancy(int id, String title) {
+    public Vacancy(int id, String title, String description) {
         this.id = id;
         this.title = title;
+        this.description = description;
+        this.creationDate = LocalDateTime.now();
     }
 
     public int getId() {
