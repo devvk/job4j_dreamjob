@@ -10,7 +10,6 @@
                 <tr>
                     <th scope="col">#</th>
                     <th scope="col">name</th>
-                    <th scope="col">description</th>
                     <th scope="col">creationDate</th>
                 </tr>
             </thead>
@@ -18,7 +17,6 @@
                 <tr th:each="candidate: ${candidates}">
                     <td th:text="${candidate.id}"></td>
                     <td th:text="${candidate.name}"></td>
-                    <td th:text="${candidate.description}"></td>
                     <td th:text="${{candidate.creationDate}}"></td>
                 </tr>
             </tbody>
