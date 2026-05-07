@@ -2,27 +2,36 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/header :: header}"></head>
 <body>
+
 <div th:replace="~{fragments/navigation :: navigation}"></div>
-<div class="container">
+
+<main class="container">
+    <div class="row mt-3 mb-3 text-center">
+        <div class="col">
+            <h1>Кандидаты</h1>
+        </div>
+    </div>
     <div class="row">
         <table class="table">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">name</th>
-                    <th scope="col">creationDate</th>
-                </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">name</th>
+                <th scope="col">creationDate</th>
+            </tr>
             </thead>
             <tbody>
-                <tr th:each="candidate: ${candidates}">
-                    <td th:text="${candidate.id}"></td>
-                    <td th:text="${candidate.name}"></td>
-                    <td th:text="${{candidate.creationDate}}"></td>
-                </tr>
+            <tr th:each="candidate: ${candidates}">
+                <td th:text="${candidate.id}"></td>
+                <td th:text="${candidate.name}"></td>
+                <td th:text="${{candidate.creationDate}}"></td>
+            </tr>
             </tbody>
         </table>
     </div>
-</div>
+</main>
+
 <footer th:replace="~{fragments/footer :: footer}"></footer>
+
 </body>
 </html>

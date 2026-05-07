@@ -2,27 +2,40 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/header :: header}"></head>
 <body>
+
 <div th:replace="~{fragments/navigation :: navigation}"></div>
+
 <div class="container">
+    <div class="row mt-3 mb-3 text-center">
+        <div class="col">
+            <h1>Вакансии</h1>
+        </div>
+    </div>
     <div class="row">
         <table class="table">
             <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">title</th>
-                    <th scope="col">creationDate</th>
-                </tr>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">title</th>
+                <th scope="col">creationDate</th>
+            </tr>
             </thead>
             <tbody>
-                <tr th:each="vacancy: ${vacancies}">
-                    <td th:text="${vacancy.id}"></td>
-                    <td th:text="${vacancy.title}"></td>
-                    <td th:text="${{vacancy.creationDate}}"></td>
-                </tr>
+            <tr th:each="vacancy : ${vacancies}">
+                <td th:text="${vacancy.id}"></td>
+                <td>
+                    <a th:text="${vacancy.title}"
+                       th:href="@{/vacancies/{vacancyId}(vacancyId=${vacancy.id})}">
+                    </a>
+                </td>
+                <td th:text="${{vacancy.creationDate}}"></td>
+            </tr>
             </tbody>
         </table>
     </div>
 </div>
+
 <footer th:replace="~{fragments/footer :: footer}"></footer>
+
 </body>
 </html>

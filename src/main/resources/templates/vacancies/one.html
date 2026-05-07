@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/header :: header}"></head>
+<body>
+
+<div th:replace="~{fragments/navigation :: navigation}"></div>
+
+<main class="container py-3">
+    <form th:action="@{/vacancies/update}" method="post" th:object="${vacancy}">
+        <input type="hidden" th:field="*{id}"/>
+        <div class="row mb-3 text-center">
+            <div class="col">
+                <h1>Редактирование вакансии</h1>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="title" class="form-label"><b>Название</b></label>
+                <input type="text" class="form-control" id="title"
+                       th:field="*{title}"
+                       placeholder="Предлагаемая должность, например: Ведущий Java разработчик">
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="description" class="form-label"><b>Описание</b></label>
+                <textarea class="form-control" id="description" rows="20"
+                          th:field="*{description}"
+                          placeholder="Опишите требования к кандидату"></textarea>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-4">
+                <a class="btn btn-light w-100" th:href="@{/vacancies}">Отмена</a>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-danger w-100" th:href="@{/vacancies/delete/{id}(id=${vacancy.id})}">Удалить</a>
+            </div>
+            <div class="col-md-4">
+                <button class="btn btn-success w-100" type="submit">Обновить</button>
+            </div>
+        </div>
+    </form>
+</main>
+
+<footer th:replace="~{fragments/footer :: footer}"></footer>
+
+</body>
+</html>

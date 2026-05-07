@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="~{fragments/header :: header}"></head>
 <body>
 
@@ -11,14 +11,17 @@
             <h1>Создание вакансии</h1>
         </div>
     </div>
+
     <form class="mt-3" th:action="@{/vacancies/create}" method="post">
         <div class="row mb-3">
             <label for="title" class="form-label"><b>Название</b></label>
-            <input type="text" class="form-control" id="title" name="title" placeholder="Предлагаемая должность, например, Ведущий Java разработчик">
+            <input type="text" class="form-control" id="title" name="title"
+                   placeholder="Предлагаемая должность, например, Ведущий Java разработчик">
         </div>
         <div class="row mb-3">
             <label for="description" class="form-label"><b>Описание</b></label>
-            <textarea class="form-control" id="description" name="description" rows="20" placeholder="Опишите требования к кандидату"></textarea>
+            <textarea class="form-control" id="description" name="description" rows="20"
+                      placeholder="Опишите требования к кандидату"></textarea>
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-6">
@@ -33,6 +36,7 @@
             </div>
         </div>
     </form>
+
 </main>
 </body>
 </html>
