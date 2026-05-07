@@ -29,6 +29,9 @@ public class Candidate {
         this.creationDate = creationDate;
     }
 
+    public Candidate() {
+    }
+
     public Candidate(int id, String name, String description) {
         this.id = id;
         this.name = name;
