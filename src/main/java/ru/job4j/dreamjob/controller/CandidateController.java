@@ -48,7 +48,6 @@ public class CandidateController {
             model.addAttribute("message", "Кандидат с указанным идентификатором не найден!");
             return "errors/404";
         }
-        model.addAttribute("candidate", candidate);
         return "redirect:/candidates";
     }
 
