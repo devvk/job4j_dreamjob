@@ -6,11 +6,22 @@
 <div th:replace="~{fragments/navigation :: navigation}"></div>
 
 <main class="container py-3">
-    <form th:action="@{/candidates/update}" method="post" th:object="${candidate}">
+    <form th:action="@{/candidates/update}" method="post" th:object="${candidate}" enctype="multipart/form-data">
         <input type="hidden" th:field="*{id}"/>
         <div class="row mb-3 text-center">
             <div class="col">
                 <h1>Редактирование кандидата</h1>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-3">
+                <img th:src="@{/files/{fileId}(fileId=*{fileId})}" class="w-100 img-thumbnail" alt="No image"/>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="formFile" class="form-label"><b>Фото</b></label>
+                <input type="file" class="form-control" id="formFile" name="file">
             </div>
         </div>
         <div class="row mb-3">
