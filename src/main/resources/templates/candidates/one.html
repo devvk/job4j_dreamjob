@@ -35,8 +35,7 @@
                 <label for="city" class="form-label"><b>Город</b></label>
                 <select class="form-control" id="city" th:field="*{cityId}">
                     <option th:each="city: ${cities}"
-                            th:value="${city.id}"
-                            th:text="${city.name}">
+                            th:value="${city.id}" th:text="${city.name}">
                 </select>
             </div>
         </div>
