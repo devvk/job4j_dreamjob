@@ -17,7 +17,7 @@ public class MemoryFileRepository implements FileRepository {
 
     @Override
     public File save(File file) {
-        file.setId(nextId.getAndIncrement());
+        file.setId(nextId.incrementAndGet());
         files.put(file.getId(), file);
         return file;
     }
