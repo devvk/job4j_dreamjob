@@ -29,6 +29,10 @@
                           placeholder="Опишите требования к кандидату"></textarea>
             </div>
         </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="visible" th:field="*{visible}">
+            <label for="visible" class="form-check-label">Опубликовать</label>
+        </div>
         <div class="row mb-3">
             <div class="col-md-4">
                 <a class="btn btn-light w-100" th:href="@{/vacancies}">Отмена</a>
