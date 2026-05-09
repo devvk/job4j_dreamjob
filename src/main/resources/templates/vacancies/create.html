@@ -20,12 +20,20 @@
         </div>
         <div class="row mb-3">
             <label for="description" class="form-label"><b>Описание</b></label>
-            <textarea class="form-control" id="description" name="description" rows="20"
+            <textarea class="form-control" id="description" name="description" rows="15"
                       placeholder="Опишите требования к кандидату"></textarea>
         </div>
         <div class="row mb-3 form-check">
             <input type="checkbox" class="form-check-input" name="visible" id="visible">
             <label for="visible" class="form-check-label">Опубликовать</label>
+        </div>
+        <div class="row mb-3">
+            <label for="city" class="form-label"><b>Город</b></label>
+            <select class="form-control" id="city" name="cityId">
+                <option th:each="city : ${cities}"
+                        th:value="${city.id}" th:text="${city.name}">
+                </option>
+            </select>
         </div>
         <div class="row mb-3 justify-content-center">
             <div class="col-6">

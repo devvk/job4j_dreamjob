@@ -24,9 +24,20 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="description" class="form-label"><b>Описание</b></label>
-                <textarea class="form-control" id="description" rows="20"
+                <textarea class="form-control" id="description" rows="15"
                           th:field="*{description}"
-                          placeholder="Опишите ваш опыт"></textarea>
+                          placeholder="Опишите ваш опыт">
+                </textarea>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <label for="city" class="form-label"><b>Город</b></label>
+                <select class="form-control" id="city" th:field="*{cityId}">
+                    <option th:each="city: ${cities}"
+                            th:value="${city.id}"
+                            th:text="${city.name}">
+                </select>
             </div>
         </div>
         <div class="row mb-3">
