@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import ru.job4j.dreamjob.dto.FileDto;
 import ru.job4j.dreamjob.model.Candidate;
 import ru.job4j.dreamjob.model.File;
-import ru.job4j.dreamjob.model.Vacancy;
 import ru.job4j.dreamjob.repository.CandidateRepository;
 
 import java.util.Collection;
@@ -19,8 +18,8 @@ public class SimpleCandidateService implements CandidateService {
 
     private final FileService fileService;
 
-    public SimpleCandidateService(CandidateRepository candidateRepository, FileService fileService) {
-        this.candidateRepository = candidateRepository;
+    public SimpleCandidateService(CandidateRepository sql2oCandidateRepository, FileService fileService) {
+        this.candidateRepository = sql2oCandidateRepository;
         this.fileService = fileService;
     }
 
@@ -41,8 +40,11 @@ public class SimpleCandidateService implements CandidateService {
         if (candidate.isEmpty()) {
             return false;
         }
-        fileService.deleteById(candidate.get().getFileId());
-        return candidateRepository.deleteById(id);
+        boolean isDeleted = candidateRepository.deleteById(id);
+        if (isDeleted) {
+            fileService.deleteById(candidate.get().getFileId());
+        }
+        return isDeleted;
     }
 
     @Override
