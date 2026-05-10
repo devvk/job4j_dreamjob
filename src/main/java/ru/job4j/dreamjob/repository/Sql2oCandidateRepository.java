@@ -9,11 +9,11 @@ import java.util.Collection;
 import java.util.Optional;
 
 @Repository
-public class sql2oCandidateRepository implements CandidateRepository {
+public class Sql2oCandidateRepository implements CandidateRepository {
 
     private final Sql2o sql2o;
 
-    public sql2oCandidateRepository(Sql2o sql2o) {
+    public Sql2oCandidateRepository(Sql2o sql2o) {
         this.sql2o = sql2o;
     }
 
