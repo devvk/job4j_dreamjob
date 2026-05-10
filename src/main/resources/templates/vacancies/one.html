@@ -14,7 +14,7 @@
                 <h1>Редактирование вакансии</h1>
             </div>
         </div>
-        <div class="row mb-3">
+        <div class="row mb-3" th:if="*{fileId > 0}">
             <div class="col-md-3">
                 <img th:src="@{/files/{fileId}(fileId=*{fileId})}" class="w-100 img-thumbnail" alt="No image"/>
             </div>
@@ -36,7 +36,7 @@
         <div class="row mb-3">
             <div class="col">
                 <label for="description" class="form-label"><b>Описание</b></label>
-                <textarea class="form-control" id="description" rows="15"
+                <textarea class="form-control" id="description" rows="10"
                           th:field="*{description}"
                           placeholder="Опишите требования к кандидату"></textarea>
             </div>
