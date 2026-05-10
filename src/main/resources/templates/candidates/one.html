@@ -15,7 +15,8 @@
         </div>
         <div class="row mb-3" th:if="*{fileId > 0}">
             <div class="col-md-3">
-                <img th:src="@{/files/{fileId}(fileId=*{fileId})}" class="w-100 img-thumbnail"/>
+                <img th:src="@{/files/{fileId}(fileId=*{fileId})}" class="w-100 img-thumbnail"
+                     th:alt="${candidate.name}"/>
             </div>
         </div>
         <div class="row mb-3">
