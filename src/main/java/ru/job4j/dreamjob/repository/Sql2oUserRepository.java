@@ -7,8 +7,16 @@ import ru.job4j.dreamjob.model.User;
 
 import java.util.Optional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.sql2o.Sql2oException;
+
+import java.sql.SQLException;
+
 @Repository
 public class Sql2oUserRepository implements UserRepository {
+
+    private static final Logger LOG = LoggerFactory.getLogger(Sql2oUserRepository.class);
 
     private final Sql2o sql2o;
 
@@ -30,9 +38,25 @@ public class Sql2oUserRepository implements UserRepository {
             int generatedId = query.executeUpdate().getKey(Integer.class);
             user.setId(generatedId);
             return Optional.of(user);
-        } catch (Exception e) {
-            return Optional.empty();
+        } catch (Sql2oException e) {
+            LOG.error("Error while saving user", e);
+            if (isUniqueConstraintViolation(e)) {
+                return Optional.empty();
+            }
+            throw e;
         }
+    }
+
+    private boolean isUniqueConstraintViolation(Sql2oException exception) {
+        Throwable cause = exception;
+        while (cause != null) {
+            if (cause instanceof SQLException sqlException
+                    && "23505".equals(sqlException.getSQLState())) {
+                return true;
+            }
+            cause = cause.getCause();
+        }
+        return false;
     }
 
     @Override
