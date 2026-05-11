@@ -1,5 +1,6 @@
 package ru.job4j.dreamjob.controller;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,14 +21,16 @@ public class UserController {
     }
 
     @GetMapping("/register")
-    public String getRegistrationPage(Model model) {
+    public String getRegistrationPage(Model model, HttpSession session) {
+        addUserToModel(model, session);
         return "users/create";
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute User user, Model model) {
+    public String register(@ModelAttribute User user, Model model, HttpSession session) {
         var savedUser = userService.save(user);
         if (savedUser.isEmpty()) {
+            addUserToModel(model, session);
             model.addAttribute("message", "Пользователь с такой почтой уже существует.");
             return "errors/404";
         }
@@ -35,17 +38,35 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String getLoginPage(Model model) {
+    public String getLoginPage(Model model, HttpSession session) {
+        addUserToModel(model, session);
         return "users/login";
     }
 
+    private void addUserToModel(Model model, HttpSession session) {
+        var user = (User) session.getAttribute("user");
+        if (user == null) {
+            user = new User();
+            user.setName("Гость");
+        }
+        model.addAttribute("user", user);
+    }
+
     @PostMapping("/login")
-    public String login(@ModelAttribute User user, Model model) {
+    public String login(@ModelAttribute User user, Model model, HttpSession session) {
         var userOptional = userService.findByEmailAndPassword(user.getEmail(), user.getPassword());
         if (userOptional.isEmpty()) {
+            addUserToModel(model, session);
             model.addAttribute("error", "Почта или пароль введены неверно.");
             return "users/login";
         }
+        session.setAttribute("user", userOptional.get());
         return "redirect:/vacancies";
+    }
+
+    @GetMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/users/login";
     }
 }
