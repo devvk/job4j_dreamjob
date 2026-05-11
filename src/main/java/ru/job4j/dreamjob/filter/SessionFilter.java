@@ -19,11 +19,11 @@ public class SessionFilter extends HttpFilter {
     @Override
     protected void doFilter(HttpServletRequest request, HttpServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpSession session = request.getSession();
-        addUserToSession(session, request);
+        addUserToModel(session, request);
         chain.doFilter(request, response);
     }
 
-    private void addUserToSession(HttpSession session, HttpServletRequest request) {
+    private void addUserToModel(HttpSession session, HttpServletRequest request) {
         User user = (User) session.getAttribute("user");
         if (user == null) {
             user = new User();
